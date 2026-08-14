@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Chiến Lược: Microsoft ISV & Co-sell</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        microsoft: {
+                            blue: '#0078D4',
+                            dark: '#111827',
+                            light: '#F3F4F6',
+                            green: '#107C10',
+                            yellow: '#FFB900',
+                            red: '#D83B01'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid rgba(229, 231, 235, 1);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            border-color: #0078D4;
+        }
+
+        .step-card {
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .step-card:hover {
+            background-color: #F8FAFC;
+            border-color: #E2E8F0;
+            border-radius: 12px;
+        }
+
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .badge-fact {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            font-size: 0.65rem;
+            padding: 0.125rem 0.375rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .badge-interference {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+            border: 1px solid #e9d5ff;
+            font-size: 0.65rem;
+            padding: 0.125rem 0.375rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-microsoft-blue rounded-xl flex items-center justify-center text-white text-2xl shadow-md">
+                        <i class="fa-brands fa-microsoft"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-extrabold text-gray-900 leading-tight tracking-tight">Báo Cáo Chiến Lược: Microsoft ISV & Co-sell</h1>
+                        <p class="text-sm text-microsoft-blue font-semibold">Lộ trình phát triển B2B SaaS & Thương mại hóa toàn cầu</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                        <i class="fa-solid fa-shield-check mr-1.5"></i> Đã Fact-check (2026)
+                    </span>
+                    <a href="#sources" class="text-gray-500 hover:text-microsoft-blue transition-colors font-medium flex items-center bg-gray-100 hover:bg-blue-50 px-3 py-1.5 rounded-full">
+                        <i class="fa-solid fa-book-open mr-1.5"></i> Nguồn tham khảo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Tabs Navigation (Sticky/Frozen) -->
+        <div class="sticky top-[81px] z-40 bg-white/95 backdrop-blur-md pt-4 pb-0 mb-10 border-b-2 border-gray-100 flex flex-wrap gap-4 md:gap-8 shadow-[0_4px_20px_-15px_rgba(0,0,0,0.1)]">
+            <button id="btn-tab-microsoft" onclick="switchTab('microsoft')" class="pb-4 px-2 border-b-4 border-microsoft-blue text-microsoft-blue font-bold text-lg flex items-center transition-all hover:text-blue-700 whitespace-nowrap">
+                <i class="fa-brands fa-microsoft mr-2 text-xl"></i> 1. Trở thành Đối tác Microsoft
+            </button>
+            <button id="btn-tab-fundraising" onclick="switchTab('fundraising')" class="pb-4 px-2 border-b-4 border-transparent text-gray-400 font-semibold text-lg flex items-center transition-all hover:text-gray-800 hover:border-gray-300 whitespace-nowrap">
+                <i class="fa-solid fa-sack-dollar mr-2 text-xl"></i> 2. Lộ trình Gọi vốn Quỹ
+            </button>
+            <button id="btn-tab-gtm" onclick="switchTab('gtm')" class="pb-4 px-2 border-b-4 border-transparent text-gray-400 font-semibold text-lg flex items-center transition-all hover:text-rose-600 hover:border-rose-300 whitespace-nowrap">
+                <i class="fa-solid fa-bullseye mr-2 text-xl"></i> 3. Chiến lược Bán hàng (GTM)
+            </button>
+        </div>
+
+        <!-- TAB 1: MICROSOFT ISV -->
+        <div id="tab-microsoft" class="tab-content block">
+        
+        <!-- Objective Banner -->
+        <div class="bg-gradient-to-br from-microsoft-dark to-gray-800 rounded-3xl p-8 md:p-10 mb-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                <i class="fa-solid fa-rocket text-9xl"></i>
+            </div>
+            <div class="relative z-10 w-full">
+                <div class="md:w-4/5 mb-10">
+                    <div class="inline-block bg-blue-500/30 border border-blue-400/50 rounded-full px-4 py-1 text-xs font-bold tracking-widest uppercase mb-4 text-blue-200">Tóm tắt mục tiêu</div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-5 leading-tight">Biến ý tưởng thành sản phẩm thương mại trên hệ sinh thái Microsoft</h2>
+                    <p class="text-lg text-gray-300 leading-relaxed font-light">
+                        Kế hoạch này hướng dẫn bạn cách <strong class="text-white">lấy vốn tài trợ (lên đến $150.000)</strong><span class="badge-fact">Fact</span>, xây dựng ứng dụng (Plugin MS Teams) an toàn, và <strong class="text-white">xuất bản lên chợ ứng dụng toàn cầu</strong> để tiếp cận hàng triệu doanh nghiệp.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <!-- Stat 1 -->
+                    <div class="bg-white/5 hover:bg-white/10 rounded-2xl p-5 backdrop-blur-md border border-white/10 transition duration-300 flex flex-col items-center text-center shadow-lg group">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-300 to-cyan-400 mb-1 transform group-hover:scale-110 transition-transform">0$</div>
+                        <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                            <span class="text-[10px] text-gray-300 uppercase tracking-widest font-bold">Phí khởi động</span>
+                            <span class="badge-fact !ml-0 !scale-90">Fact</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">Microsoft đài thọ hoàn toàn chi phí Server (Azure Cloud) và bộ công cụ Dev trong năm đầu thông qua quỹ Founders Hub.</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="bg-white/5 hover:bg-white/10 rounded-2xl p-5 backdrop-blur-md border border-white/10 transition duration-300 flex flex-col items-center text-center shadow-lg group">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-emerald-400 mb-1 transform group-hover:scale-110 transition-transform">97%</div>
+                        <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                            <span class="text-[10px] text-gray-300 uppercase tracking-widest font-bold">Doanh thu nhận</span>
+                            <span class="badge-fact !ml-0 !scale-90">Fact</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">Tỷ lệ giữ lại cực cao khi bán phần mềm qua AppSource/Marketplace, giúp tối ưu Biên lợi nhuận gộp (Gross Margin).</p>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="bg-white/5 hover:bg-white/10 rounded-2xl p-5 backdrop-blur-md border border-white/10 transition duration-300 flex flex-col items-center text-center shadow-lg group">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-purple-300 to-fuchsia-400 mb-1 transform group-hover:scale-110 transition-transform">3%</div>
+                        <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                            <span class="text-[10px] text-gray-300 uppercase tracking-widest font-bold">Phí nền tảng</span>
+                            <span class="badge-fact !ml-0 !scale-90">Fact</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">Mức "thuế" (Tax) Microsoft thu trên mỗi giao dịch. Đây là mức thấp nhất thị trường (so với 30% của Apple/Google).</p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="bg-white/5 hover:bg-white/10 rounded-2xl p-5 backdrop-blur-md border border-white/10 transition duration-300 flex flex-col items-center text-center shadow-lg group">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-amber-300 to-orange-400 mb-1 transform group-hover:scale-110 transition-transform">$1.550</div>
+                        <div class="flex items-center justify-center gap-2 mb-3 mt-2">
+                            <span class="text-[10px] text-gray-300 uppercase tracking-widest font-bold">Phí duy trì (Năm 2)</span>
+                            <span class="badge-fact !ml-0 !scale-90">Fact</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">Phí Partner thường niên (ISV Success) bắt buộc phải đóng từ năm thứ 2 trở đi để giữ phần mềm trên chợ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Strategic Vision & Maturity Ladder -->
+        <div class="mb-14">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Left: Mindset Shift -->
+                <div class="md:w-1/3 flex flex-col justify-center">
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">Dịch chuyển Mô hình</h3>
+                    <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-white p-2 rounded-lg shadow-sm mr-3 border border-gray-100">
+                                <i class="fa-solid fa-people-arrows text-gray-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-1 uppercase tracking-wider">Từ: Bán sức lao động</h4>
+                                <p class="text-xs text-gray-500 font-medium">People × Day Rate</p>
+                                <p class="text-sm text-gray-600 mt-2">Mô hình Outsource/Consulting truyền thống, khó scale và Microsoft không ưu tiên cho chương trình này.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center mb-4">
+                            <i class="fa-solid fa-arrow-down text-blue-300 text-xl"></i>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-microsoft-blue p-2 rounded-lg shadow-md mr-3 border border-blue-600">
+                                <i class="fa-solid fa-box-open text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-microsoft-blue text-sm mb-1 uppercase tracking-wider">Sang: Giải pháp đóng gói</h4>
+                                <p class="text-xs text-blue-600 font-medium">IP × Repeat Sales × Distribution</p>
+                                <p class="text-sm text-gray-700 mt-2">Đóng gói 1 Core Product (SaaS). Microsoft lúc này sẽ đóng vai trò kênh phân phối toàn cầu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Maturity Ladder -->
+                <div class="md:w-2/3 bg-white rounded-3xl p-8 border border-gray-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 opacity-5">
+                        <i class="fa-solid fa-chart-line text-9xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-2 relative z-10">Nấc thang Trưởng thành (Maturity Ladder)</h3>
+                    <p class="text-sm text-gray-500 mb-8 relative z-10">Marketplace chỉ là điểm xuất phát. Đích đến cuối cùng là <b>Co-sell Ready</b> để Microsoft bán hàng hộ bạn.</p>
+                    
+                    <div class="space-y-4 relative z-10">
+                        <!-- Lvl 1 -->
+                        <div class="flex items-start group">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-400 mr-4 border-2 border-gray-200 group-hover:bg-blue-50 group-hover:text-blue-500 transition flex-shrink-0 mt-1">1</div>
+                            <div class="flex-grow bg-gray-50 p-4 rounded-xl border border-gray-100 group-hover:border-blue-200 transition">
+                                <div class="flex items-center mb-2">
+                                    <h4 class="font-bold text-gray-800 text-base">ISV Success <span class="badge-interference">Giai đoạn Khởi động</span></h4>
+                                </div>
+                                <div class="text-[13px] text-gray-600 space-y-1.5">
+                                    <p><strong class="text-gray-700">Mục tiêu:</strong> Xây dựng MVP hoặc chuyển đổi (Migrate) hạ tầng lên đám mây Azure.</p>
+                                    <p><strong class="text-gray-700">Đặc quyền:</strong> Tài trợ lên đến $150.000 Azure Credit, bản quyền GitHub Enterprise, Visual Studio, và tư vấn kiến trúc (Architecture Design) miễn phí.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lvl 2 -->
+                        <div class="flex items-start group">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-400 mr-4 border-2 border-gray-200 group-hover:bg-blue-50 group-hover:text-blue-500 transition flex-shrink-0 mt-1">2</div>
+                            <div class="flex-grow bg-gray-50 p-4 rounded-xl border border-gray-100 group-hover:border-blue-200 transition">
+                                <div class="flex items-center mb-2">
+                                    <h4 class="font-bold text-gray-800 text-base">Marketplace (Transactable SaaS) <span class="badge-fact">Publish</span></h4>
+                                </div>
+                                <div class="text-[13px] text-gray-600 space-y-1.5">
+                                    <p><strong class="text-gray-700">Mục tiêu:</strong> Tích hợp thanh toán (Azure Billing) & Đăng nhập (SSO), đưa App lên chợ AppSource.</p>
+                                    <p><strong class="text-gray-700">Đặc quyền:</strong> Bán tự động toàn cầu. Đặc biệt, khách hàng Enterprise có thể lấy ngân sách Azure (MACC) đã cam kết với Microsoft để mua thẳng App của bạn.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lvl 3 -->
+                        <div class="flex items-start group relative">
+                            <div class="absolute -left-2 w-1 h-full bg-microsoft-blue rounded-r-md"></div>
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center font-bold text-microsoft-blue mr-4 border-2 border-blue-200 shadow-sm flex-shrink-0 mt-1">3</div>
+                            <div class="flex-grow bg-blue-50/50 p-4 rounded-xl border-2 border-blue-200 shadow-sm">
+                                <div class="flex items-center mb-2">
+                                    <h4 class="font-bold text-gray-900 text-base">Co-sell Ready <i class="fa-solid fa-fire text-orange-500 ml-1"></i> <span class="badge-interference">Mục tiêu Cốt lõi</span></h4>
+                                </div>
+                                <div class="text-[13px] text-gray-700 space-y-1.5">
+                                    <p><strong class="text-gray-900">Mục tiêu:</strong> Chuẩn bị đầy đủ tài liệu bán hàng (Bill of Materials - BoM) theo chuẩn Microsoft.</p>
+                                    <p><strong class="text-gray-900">Đặc quyền:</strong> Cho phép đội ngũ Sales toàn cầu của Microsoft <b>bán chéo (cross-sell)</b> App của bạn. Khi bán được, Sales Microsoft sẽ được tính KPI (Quota Retirement), tạo động lực khổng lồ để họ bán hộ bạn.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lvl 4 -->
+                        <div class="flex items-start group opacity-90 hover:opacity-100 transition">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-400 mr-4 border-2 border-gray-200 group-hover:bg-purple-50 group-hover:text-purple-500 transition flex-shrink-0 mt-1">4</div>
+                            <div class="flex-grow bg-gray-50 p-4 rounded-xl border border-gray-100 group-hover:border-purple-200 transition">
+                                <div class="flex items-center mb-2">
+                                    <h4 class="font-bold text-gray-800 text-base">Azure IP Co-sell Eligible <span class="badge-fact">Fact</span></h4>
+                                </div>
+                                <div class="text-[13px] text-gray-600 space-y-1.5">
+                                    <p><strong class="text-gray-700">Mục tiêu:</strong> Bắt buộc đạt <b>$100.000 USD</b> doanh thu tiêu thụ Azure (ACR) hoặc qua Marketplace trong 12 tháng.</p>
+                                    <p><strong class="text-gray-700">Đặc quyền:</strong> Lên hạng đối tác ưu tiên, được Microsoft trực tiếp "bơm" Lead (khách hàng tiềm năng) chất lượng cao và cùng Account Manager tham gia chốt deal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lvl 5 -->
+                        <div class="flex items-start group opacity-90 hover:opacity-100 transition">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-400 mr-4 border-2 border-gray-200 group-hover:bg-yellow-50 group-hover:text-yellow-600 transition flex-shrink-0 mt-1">5</div>
+                            <div class="flex-grow bg-gray-50 p-4 rounded-xl border border-gray-100 group-hover:border-yellow-300 group-hover:bg-yellow-50/20 transition">
+                                <div class="flex items-center mb-2">
+                                    <h4 class="font-bold text-gray-800 text-base">Certified Software (MCPP) <i class="fa-solid fa-crown text-yellow-500 ml-1"></i> <span class="badge-fact">Fact</span></h4>
+                                </div>
+                                <div class="text-[13px] text-gray-600 space-y-1.5">
+                                    <p><strong class="text-gray-700">Mục tiêu:</strong> Vượt qua kiểm toán kỹ thuật (Audit) khắt khe, đạt Rating Marketplace ≥ 4.5.</p>
+                                    <p><strong class="text-gray-700">Đặc quyền:</strong> Nhận huy hiệu danh giá nhất hệ sinh thái. Các tập đoàn Enterprise/Chính phủ luôn yêu cầu Vendor phải có huy hiệu này trước khi ký Hợp đồng.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Prerequisites -->
+        <div class="mb-14">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-microsoft-blue/10 rounded-full flex items-center justify-center mr-4">
+                    <i class="fa-solid fa-clipboard-list text-microsoft-blue text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Hồ sơ bắt buộc chuẩn bị (Điều kiện đầu vào)</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 relative overflow-hidden group border border-gray-100/50 hover:border-microsoft-blue/50 transition">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fa-solid fa-file-contract text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-microsoft-blue mb-5 shadow-sm">
+                        <i class="fa-solid fa-file-contract text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">1. Pháp lý DN <span class="badge-fact">Fact</span></h4>
+                    <p class="text-[13px] text-gray-500 mb-4 line-clamp-2">Những giấy tờ chứng minh pháp nhân hợp lệ.</p>
+                    <ul class="text-[13px] text-gray-600 space-y-3">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-green-500 mt-1 mr-2 text-xs"></i><span><b>Giấy ĐKKD & Mã số thuế:</b> Bản scan màu. Tên công ty/TIN khai báo phải <span class="bg-blue-100 text-blue-800 px-1 rounded font-bold">khớp 100%</span> (từng dấu phẩy).</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-green-500 mt-1 mr-2 text-xs"></i><span><b>Mã số DUNS:</b> Rất nên đăng ký trước mã số DUNS (Dun & Bradstreet) để <span class="bg-green-100 text-green-800 px-1 rounded font-bold">rút ngắn thời gian</span> Microsoft xác minh từ vài tuần xuống còn <span class="bg-green-100 text-green-800 px-1 rounded font-bold">1-2 ngày</span>.</span></li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card p-6 relative overflow-hidden group border border-gray-100/50 hover:border-red-400/50 transition">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fa-solid fa-globe text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-red-50 border border-red-100 rounded-xl flex items-center justify-center text-red-500 mb-5 shadow-sm">
+                        <i class="fa-solid fa-globe text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">2. Danh tính Số <span class="badge-fact !bg-red-100 !text-red-700 !border-red-200">Critical</span></h4>
+                    <p class="text-[13px] text-gray-500 mb-4 line-clamp-2">Tài nguyên số để vượt qua vòng Vetting.</p>
+                    <ul class="text-[13px] text-gray-600 space-y-3">
+                        <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-red-500 mt-1 mr-2 text-xs"></i><span><b>Email Domain:</b> <span class="bg-red-100 text-red-800 px-1 rounded font-bold">Tuyệt đối KHÔNG</span> dùng Gmail/Yahoo. Microsoft sẽ <span class="bg-red-100 text-red-800 px-1 rounded font-bold">tự động đánh rớt (Auto-reject)</span> tài khoản dùng email miễn phí.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-red-500 mt-1 mr-2 text-xs"></i><span><b>Website Doanh nghiệp:</b> Bắt buộc phải có website đang hoạt động. Địa chỉ trên trang "Liên hệ" phải <span class="bg-red-100 text-red-800 px-1 rounded font-bold">khớp 100%</span> với địa chỉ trên ĐKKD.</span></li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card p-6 relative overflow-hidden group border border-gray-100/50 hover:border-orange-400/50 transition">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fa-solid fa-building-columns text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-orange-50 border border-orange-100 rounded-xl flex items-center justify-center text-orange-500 mb-5 shadow-sm">
+                        <i class="fa-solid fa-building-columns text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">3. Thông tin Thuế <span class="badge-fact !bg-orange-100 !text-orange-700 !border-orange-200">Warning</span></h4>
+                    <p class="text-[13px] text-gray-500 mb-4 line-clamp-2">Khai báo Payout và Thuế Mỹ (US Tax).</p>
+                    <ul class="text-[13px] text-gray-600 space-y-3">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-green-500 mt-1 mr-2 text-xs"></i><span><b>Tài khoản NH:</b> Đứng tên Pháp nhân.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-orange-500 mt-1 mr-2 text-xs"></i><span><b>Lưu ý W-8BEN-E:</b> Việt Nam <span class="bg-orange-100 text-orange-800 px-1 rounded font-bold">chưa có</span> Hiệp định tránh đánh thuế 2 lần (Tax Treaty) với Mỹ. Do đó, bạn có rủi ro bị giữ lại <span class="bg-orange-100 text-orange-800 px-1 rounded font-bold">30% Thuế nhà thầu</span> (Withholding Tax) cho các giao dịch phát sinh từ khách hàng Mỹ.</span></li>
+                    </ul>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card p-6 relative overflow-hidden group border border-gray-100/50 hover:border-purple-400/50 transition">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fa-solid fa-lightbulb text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-50 border border-purple-100 rounded-xl flex items-center justify-center text-purple-500 mb-5 shadow-sm">
+                        <i class="fa-solid fa-lightbulb text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">4. Ý tưởng <span class="badge-interference !bg-purple-100 !text-purple-700 !border-purple-200">Tùy chọn</span></h4>
+                    <p class="text-[13px] text-gray-500 mb-4 line-clamp-2">Dùng để Pitching lấy quỹ tài trợ Founders Hub.</p>
+                    <ul class="text-[13px] text-gray-600 space-y-3">
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-green-500 mt-1 mr-2 text-xs"></i><span><b>Mô hình B2B:</b> Phục vụ doanh nghiệp/trường học sẽ được ưu ái hơn B2C.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-circle-check text-green-500 mt-1 mr-2 text-xs"></i><span><b>Pitch Deck / Demo:</b> Chỉ có PRD nháp là chưa đủ, nên chuẩn bị <span class="bg-purple-100 text-purple-800 px-1 rounded font-bold">Pitch Deck (PDF)</span> hoặc quay 1 <span class="bg-purple-100 text-purple-800 px-1 rounded font-bold">Video Demo 2 phút</span> để tăng tỷ lệ xin được gói Azure $5,000 trở lên.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Execution Timeline -->
+        <div>
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-microsoft-blue/10 rounded-full flex items-center justify-center mr-4">
+                    <i class="fa-solid fa-layer-group text-microsoft-blue text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 tracking-tight">Chi tiết 3 Giai đoạn Thực thi (Timeline 12 Tháng)</h3>
+            </div>
+            
+            <div class="space-y-10">
+                <!-- Phase 1 -->
+                <div class="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-microsoft-blue"></div>
+                    <div class="bg-gray-50 border-b border-gray-100 px-8 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 flex items-center">
+                                <span class="bg-microsoft-blue text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mr-3 shadow-md">1</span>
+                                Khởi tạo & Xin Tài trợ (Tháng 1 - Tháng 3)
+                            </h4>
+                            <p class="text-sm text-gray-500 mt-1 ml-11">Xây dựng nền móng pháp lý và lấy vốn phát triển ban đầu.</p>
+                        </div>
+                        <span class="bg-blue-100 text-microsoft-blue text-sm font-bold px-4 py-2 rounded-full inline-flex items-center self-start md:self-auto border border-blue-200 shadow-sm">
+                            <i class="fa-solid fa-coins mr-2"></i>Mục tiêu: Lấy vốn $1.000 - $150.000
+                        </span>
+                    </div>
+                    <div class="p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <!-- Step 1.1 -->
+                            <div class="step-card p-5 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2 flex items-center">1. Founders Hub <span class="badge-fact">Fact</span></h5>
+                                <div class="bg-blue-50 text-blue-800 text-xs px-2 py-1 rounded inline-block mb-3 font-semibold border border-blue-100 self-start">Chi phí: Miễn phí</div>
+                                <p class="text-sm text-gray-600 mb-4 flex-grow">
+                                    Nộp hồ sơ Startup để xin vốn. Bạn nhận <b>Azure Credit</b>, được duyệt theo bậc (Ideate $1K, Develop $5K, Epic $35k, Scale $150K).
+                                </p>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Tips Unlock Gói Cao (Hack Growth):</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>Gói Develop ($5K):</b> Đính kèm Pitch Deck (PDF) và 1 Video Demo tính năng (2 phút) để chứng minh Team đã có sản phẩm thật (MVP).</li>
+                                        <li><b>Gói Grow ($25K):</b> Bạn phải chứng minh được <span class="bg-amber-200 px-1 rounded font-bold">Traction</span> (Bắt đầu có Users/Doanh thu thật) và có tỷ lệ tiêu thụ hết số Azure Credit cũ một cách hợp lý.</li>
+                                        <li><b>Gói Scale ($150K):</b> Dành cho Startup đã gọi vốn vòng Series A+ hoặc được "chống lưng" (Backed) bởi các Quỹ VC thuộc mạng lưới <span class="bg-amber-200 px-1 rounded font-bold">Microsoft Investor Network</span> (vd: Y Combinator, Techstars...).</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://www.microsoft.com/en-us/startups" target="_blank" class="w-full text-center px-4 py-2 bg-microsoft-blue text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-sm">
+                                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Nộp hồ sơ ngay
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Step 1.2 -->
+                            <div class="step-card p-5 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2 flex items-center">2. Partner Center <span class="badge-fact">Fact</span></h5>
+                                <div class="bg-amber-50 text-amber-800 text-xs px-2 py-1 rounded inline-block mb-3 font-semibold border border-amber-100 self-start">Cửa ải Vetting (Khó nhất)</div>
+                                <p class="text-sm text-gray-600 mb-4 flex-grow">
+                                    Nơi quản lý toàn bộ vòng đời kinh doanh. 80% Startup Việt Nam bị kẹt ở khâu xác minh pháp nhân (Vetting) tại đây.
+                                </p>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Tips qua ải Vetting 100%:</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>Tên Công ty:</b> <span class="bg-amber-200 px-1 rounded font-bold">Cấm tự dịch sang tiếng Anh</span> nếu ĐKKD không có. (VD: "Công ty CP ABC" phải gõ đúng chữ tiếng Việt không dấu, tuyệt đối không gõ "ABC JSC").</li>
+                                        <li><b>Xác minh Website:</b> Trang "Liên hệ" (Contact Us) trên website công ty phải ghi rõ Địa chỉ trụ sở và SĐT giống hệt trên ĐKKD. Email đăng ký phải là email domain (admin@abc.com).</li>
+                                        <li><b>Mẹo Mở Ticket:</b> Nếu bị "Pending" quá 5 ngày, hãy lập tức mở Support Ticket, đính kèm luôn Hóa đơn điện/nước/internet (Utility Bill) có tên doanh nghiệp.</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://partner.microsoft.com/" target="_blank" class="w-full text-center px-4 py-2 bg-gray-800 text-white rounded-lg text-sm font-semibold hover:bg-gray-900 transition shadow-sm">
+                                        <i class="fa-solid fa-user-check mr-1"></i> Đăng ký Partner
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Step 1.3 -->
+                            <div class="step-card p-5 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2 flex items-center">3. ISV & AI <span class="badge-fact">Fact</span></h5>
+                                <div class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded inline-block mb-3 font-semibold border border-gray-200 self-start">Gửi Yêu cầu Đặc biệt</div>
+                                <p class="text-sm text-gray-600 mb-4 flex-grow">
+                                    Đăng ký quyền lợi cho công ty làm phần mềm (ISV) và xin phép Microsoft để được dùng Azure OpenAI.
+                                </p>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Tips & Đặc Quyền:</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>ISV Success Core:</b> Khi join chương trình này, bạn không chỉ được $5K Cloud, mà đặc giá nhất là <span class="bg-amber-200 px-1 rounded font-bold">50 giờ tư vấn (1-on-1)</span> với Kiến trúc sư (Cloud Architect) của Microsoft để review hệ thống của bạn.</li>
+                                        <li><b>Xin Azure OpenAI:</b> Khác với ChatGPT cá nhân, Azure OpenAI đóng cửa với công chúng (Gated). Bạn phải nộp form. <b>Lưu ý:</b> Đừng viết Use Case chung chung kiểu "Làm Chatbot". Hãy viết cực kỳ kỹ thuật: <i>"Sử dụng mô hình GPT-4o để vector hóa 1 triệu file PDF hợp đồng pháp lý, làm tính năng RAG trích xuất điều khoản..."</i> mới được duyệt.</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://aka.ms/isvsuccess" target="_blank" class="w-full text-center px-4 py-2 border border-microsoft-blue text-microsoft-blue rounded-lg text-sm font-semibold hover:bg-blue-50 transition">
+                                        Form ISV Success
+                                    </a>
+                                    <a href="https://aka.ms/oai/access" target="_blank" class="w-full text-center px-4 py-2 border border-microsoft-blue text-microsoft-blue rounded-lg text-sm font-semibold hover:bg-blue-50 transition">
+                                        Form Azure OpenAI
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-microsoft-yellow"></div>
+                    <div class="bg-gray-50 border-b border-gray-100 px-8 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 flex items-center">
+                                <span class="bg-microsoft-yellow text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mr-3 shadow-md">2</span>
+                                Phát triển & Tuân thủ Bảo mật (Tháng 4 - Tháng 8)
+                            </h4>
+                            <p class="text-sm text-gray-500 mt-1 ml-11">Team kỹ thuật bắt tay vào code và tuân thủ chuẩn Enterprise.</p>
+                        </div>
+                        <span class="bg-yellow-50 text-yellow-800 text-sm font-bold px-4 py-2 rounded-full inline-flex items-center self-start md:self-auto border border-yellow-200 shadow-sm">
+                            <i class="fa-solid fa-code mr-2"></i>Mục tiêu: Ra mắt Bản thử nghiệm (Beta)
+                        </span>
+                    </div>
+                    <div class="p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Step 2.1 -->
+                            <div class="step-card p-6 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-3 flex items-center">1. Lập trình & Kiến trúc <span class="badge-interference">Interference</span></h5>
+                                <p class="text-sm text-gray-600 mb-4 flex-grow leading-relaxed">
+                                    Đội ngũ Dev bắt đầu build MVP. Không nên dùng Máy ảo (VM) cũ kỹ. Hãy dùng <b>Azure Container Apps</b> hoặc <b>App Service</b> để dễ Scale và tối ưu Credit.
+                                </p>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Mẹo Lập trình & Tối ưu chi phí:</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>Chống "Cháy Quỹ":</b> Bắt buộc set cảnh báo Budget Alerts ở mức $50/ngày. Đã có rất nhiều Startup cấu hình sai khiến Server chạy ngầm và đốt sạch $5K credit chỉ trong 1 đêm.</li>
+                                        <li><b>Tối ưu Azure OpenAI:</b> Vì tính tiền theo Token (Rất đắt), Dev bắt buộc phải setup cơ chế <b>Caching (Redis)</b> để lưu trữ các câu trả lời trùng lặp, giúp tiết kiệm tới 40-50% chi phí gọi API.</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://portal.azure.com/" target="_blank" class="w-full text-center px-5 py-2 bg-microsoft-blue text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-sm">
+                                        <i class="fa-solid fa-cloud mr-2"></i> Truy cập Azure Portal
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Step 2.2 -->
+                            <div class="step-card p-6 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-3 flex items-center">2. Xây dựng rào chắn Bảo mật <span class="badge-fact">Fact</span></h5>
+                                <p class="text-sm text-gray-600 mb-4 flex-grow leading-relaxed">
+                                    Để bán được cho tệp khách hàng Doanh nghiệp, App của bạn bắt buộc phải tuân thủ nghiêm ngặt 3 chuẩn bảo mật sau:
+                                </p>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-shield-halved text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Checklist Bảo mật (Bắt buộc):</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>Single Sign-On (Entra ID):</b> Bắt buộc user dùng tài khoản công ty (như admin@vinamilk.com.vn) để Login. <span class="bg-amber-200 px-1 rounded font-bold">Lưu ý:</span> Không tự code luồng Auth, hãy dùng sẵn thư viện <b>MSAL</b> của Microsoft.</li>
+                                        <li><b>Multi-tenant (Đa khách hàng):</b> Dữ liệu của Công ty A và Công ty B phải được cách ly hoàn toàn ở tầng Database. Phân quyền RBAC cực kỳ chặt chẽ.</li>
+                                        <li><b>Tích hợp Microsoft Graph API (Bonus):</b> Nếu App của bạn xin quyền đọc Calendar, gửi tin nhắn Teams hay mở file SharePoint của user, Microsoft sẽ <span class="bg-amber-200 px-1 rounded font-bold">chấm điểm cực cao</span> vì làm tăng độ "dính" vào hệ sinh thái.</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://entra.microsoft.com/" target="_blank" class="w-full text-center px-5 py-2 bg-gray-800 text-white rounded-lg text-sm font-semibold hover:bg-gray-900 transition shadow-sm">
+                                        <i class="fa-solid fa-shield-halved mr-2"></i> Cấu hình Entra ID
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-microsoft-green"></div>
+                    <div class="bg-gray-50 border-b border-gray-100 px-8 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 flex items-center">
+                                <span class="bg-microsoft-green text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mr-3 shadow-md">3</span>
+                                Kiểm duyệt & Thương mại hóa (Tháng 9 - Tháng 12)
+                            </h4>
+                            <p class="text-sm text-gray-500 mt-1 ml-11">Đưa app lên kệ, khai báo thuế và thiết lập đường ống nhận tiền.</p>
+                        </div>
+                        <span class="bg-green-50 text-green-800 text-sm font-bold px-4 py-2 rounded-full inline-flex items-center self-start md:self-auto border border-green-200 shadow-sm">
+                            <i class="fa-solid fa-store mr-2"></i>Mục tiêu: Lên AppSource và Bán hàng
+                        </span>
+                    </div>
+                    <div class="p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Step 3.1 -->
+                            <div class="step-card p-6 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-3 flex items-center">1. Vượt qua Security Review <span class="badge-fact">Fact</span></h5>
+                                <p class="text-sm text-gray-600 mb-3 leading-relaxed">
+                                    Đây là vòng kiểm duyệt (Audit) khắt khe nhất. Microsoft sẽ cử Kỹ sư thật (Human) vào test App của bạn qua 3 khâu:
+                                </p>
+                                <ol class="text-sm text-gray-600 space-y-2 mb-6 flex-grow list-decimal pl-5">
+                                    <li><b>Business & Content:</b> Kiểm tra Website, Privacy Policy, Terms of Service.</li>
+                                    <li><b>Technical Validation:</b> Kỹ sư Microsoft sẽ đăng nhập vào App của bạn bằng tài khoản Demo để test luồng Auth (SSO), quét mã độc (Malware).</li>
+                                    <li><b>Marketing Validation:</b> Duyệt tên App, Logo, Video giới thiệu.</li>
+                                </ol>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Hai "Lỗi Ngớ Ngẩn" gây Reject:</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>Vi phạm Bản quyền (Trademark):</b> <span class="bg-amber-200 px-1 rounded font-bold">Tuyệt đối không</span> đặt tên App chứa từ khóa của Microsoft (VD: Cấm đặt tên "ABC for Teams"). Chỉ được đặt là "ABC" và ghi chú "Integrates with Teams".</li>
+                                        <li><b>Thiếu tài liệu Pháp lý:</b> 90% App bị đánh rớt vòng 1 vì trên Website không có sẵn 2 trang: <b>Privacy Policy</b> và <b>Terms of Use</b>.</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://learn.microsoft.com/en-us/partner-center/marketplace/validation-policies" target="_blank" class="w-full text-center px-5 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-200 transition shadow-sm">
+                                        <i class="fa-solid fa-scale-balanced mr-2"></i> Xem tiêu chuẩn Review
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Step 3.2 -->
+                            <div class="step-card p-6 border border-gray-100 rounded-xl bg-white shadow-sm flex flex-col">
+                                <h5 class="text-lg font-bold text-gray-900 mb-3 flex items-center">2. Khai báo Thuế & Payout <span class="badge-fact">Fact</span></h5>
+                                <p class="text-sm text-gray-600 mb-3 leading-relaxed">
+                                    Khi bán App, Microsoft (Platform) sẽ thu phế 3%, bạn nhận 97%. Tuy nhiên, để tiền về tới Việt Nam trọn vẹn, bạn phải qua ải Pháp lý:
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-2 mb-6 flex-grow list-disc pl-5">
+                                    <li><b>Hồ sơ Ngân hàng:</b> Cần mã SWIFT Code của tài khoản Doanh nghiệp VND/USD.</li>
+                                    <li><b>Biểu mẫu Thuế W-8BEN-E:</b> Đây là form của Sở Thuế vụ Mỹ (IRS) dành cho Doanh nghiệp nước ngoài. Phải điền <b>Mã số thuế (TIN)</b> của cty bạn vào đây.</li>
+                                </ul>
+                                <div class="mb-4 p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg shadow-sm">
+                                    <div class="flex items-start text-xs text-amber-900 leading-relaxed mb-2">
+                                        <i class="fa-solid fa-money-bill-transfer text-amber-500 mt-0.5 mr-2 text-sm"></i>
+                                        <span><b>Lưu ý "Mất Tiền Oan":</b></span>
+                                    </div>
+                                    <ul class="text-[11px] text-amber-900 space-y-1.5 ml-6 list-disc">
+                                        <li><b>Thuế Nhà thầu (Withholding Tax):</b> Nếu bạn <span class="bg-amber-200 px-1 rounded font-bold">không khai</span> hoặc khai sai form W-8BEN-E, Mỹ sẽ tự động gạch đi 30% doanh thu của bạn trước khi chuyển về VN.</li>
+                                        <li><b>Chống Rửa Tiền (AML):</b> Tên trên Bank Account phải khớp 100% với tên Công ty trên ĐKKD. Hãy xin ngân hàng 1 tờ <b>Bank Confirmation Letter</b> bằng tiếng Anh (Có mộc đỏ) để upload làm bằng chứng.</li>
+                                    </ul>
+                                </div>
+                                <div class="flex-none flex flex-col gap-2 justify-end h-[90px]">
+                                    <a href="https://partner.microsoft.com/dashboard/payouts/" target="_blank" class="w-full text-center px-5 py-2 bg-microsoft-green text-white rounded-lg text-sm font-semibold hover:bg-green-700 transition shadow-sm">
+                                        <i class="fa-solid fa-money-bill-transfer mr-2"></i> Thiết lập Nhận tiền
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pitfalls Section -->
+        <div class="mb-14 bg-red-50/50 border border-red-100 rounded-3xl p-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                <i class="fa-solid fa-triangle-exclamation text-8xl text-red-500"></i>
+            </div>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-red-900 mb-6 flex items-center">
+                    <i class="fa-solid fa-skull-crossbones mr-3 text-red-600"></i> Tại sao 80% Startup thất bại khi Publish App lên Microsoft?
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-red-50 hover:shadow-md transition">
+                        <h4 class="font-bold text-red-800 mb-2 flex items-center"><i class="fa-solid fa-fire mr-2 text-red-500"></i> Burn tiền tài trợ sai cách</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-3">Hệ thống AI của Microsoft giám sát cực gắt dòng tiền Azure Credit. Tuyệt đối cấm dùng server để đào Coin (Crypto Mining) hoặc chạy dự án cá nhân. Khung hình phạt là <b>Banned vĩnh viễn</b> (Khóa cả công ty, cấm kháng nghị).</p>
+                        <div class="bg-red-50 text-red-800 text-[11px] p-2 rounded border border-red-100">
+                            <b>Lỗi ngớ ngẩn nhất:</b> Quên xóa "Tài nguyên mồ côi" (Orphaned Resources) như IP tĩnh không dùng, ổ cứng rác... Chúng sẽ âm thầm cắn sạch $5,000 credit của bạn chỉ trong vài tuần.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-red-50 hover:shadow-md transition">
+                        <h4 class="font-bold text-red-800 mb-2 flex items-center"><i class="fa-solid fa-copyright mr-2 text-red-500"></i> Vi phạm bản quyền thương hiệu</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-3">Tuyệt đối cấm đặt tên App chứa từ khóa "Microsoft", "Teams", "Copilot". (VD Sai: "Teams Task Manager"). Mức phạt là Reject lập tức vòng sơ duyệt.</p>
+                        <div class="bg-red-50 text-red-800 text-[11px] p-2 rounded border border-red-100">
+                            <b>Cách lách luật an toàn:</b> Chỉ được phép đặt tên độc lập và thêm hậu tố tích hợp. (VD Đúng: "Task Manager - Integrates with Microsoft Teams"). Nghiêm cấm dùng mảng màu logo Windows/Office "xào nấu" lại làm Icon App.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-red-50 hover:shadow-md transition">
+                        <h4 class="font-bold text-red-800 mb-2 flex items-center"><i class="fa-solid fa-bug mr-2 text-red-500"></i> Rò rỉ dữ liệu PII (Data Leak)</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-3">Đội ngũ Review sẽ quét kỹ luồng dữ liệu cá nhân PII (Tên, SĐT, Email). Nếu bạn lưu dữ liệu PII dạng Plaintext (Văn bản thuần) vào Database, App của bạn sẽ trượt bài Test Security.</p>
+                        <div class="bg-red-50 text-red-800 text-[11px] p-2 rounded border border-red-100">
+                            <b>Cách fix cho Dev:</b> Phải mã hóa dữ liệu ở tầng Application hoặc bật tính năng <b>TDE (Transparent Data Encryption)</b> trên Azure SQL. Tuyệt đối không lưu Access Token của User vào log file.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-red-50 hover:shadow-md transition">
+                        <h4 class="font-bold text-red-800 mb-2 flex items-center"><i class="fa-solid fa-store-slash mr-2 text-red-500"></i> Bỏ qua "Mỏ vàng" B2B Co-sell</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-3">Nhiều CTO có tư duy: Đăng App lên chợ rồi "ngồi chờ" khách tự mò tới tải. Đây là lỗi kinh doanh chí mạng khiến doanh thu lẹt đẹt.</p>
+                        <div class="bg-red-50 text-red-800 text-[11px] p-2 rounded border border-red-100">
+                            <b>Bí quyết tỷ đô (IP Co-sell Incentives):</b> Khi đạt cấp độ "Co-sell Ready", đội ngũ Sales toàn cầu của Microsoft sẽ <b>đi bán hàng hộ bạn</b>. Nếu họ chốt được Hợp đồng, Microsoft sẽ thưởng tiền hoa hồng cho họ. Đó là đòn bẩy kinh doanh mạnh nhất thế giới.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        <!-- END TAB 1 -->
+
+        <!-- TAB 2: FUNDRAISING -->
+        <div id="tab-fundraising" class="tab-content hidden" style="opacity: 0;">
+            <div class="bg-gradient-to-br from-green-900 to-emerald-800 rounded-3xl p-8 md:p-10 mb-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                    <i class="fa-solid fa-coins text-9xl"></i>
+                </div>
+                <div class="relative z-10 w-full md:w-3/4">
+                    <div class="inline-block bg-green-500/30 border border-green-400/50 rounded-full px-4 py-1 text-xs font-bold tracking-widest uppercase mb-4 text-green-200">Chiến lược Gọi vốn (Fundraising)</div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-5 leading-tight">Định hướng Gọi vốn Quỹ Đầu Tư ($100K+)</h2>
+                    <p class="text-lg text-green-100 leading-relaxed font-light">
+                        Mổ xẻ cơ chế toán học của <strong class="text-white">Post-money SAFE</strong>, khẩu vị của các quỹ nội địa, và cảnh báo về <strong class="text-white">chi phí chìm</strong> khi mở công ty Holding tại Singapore.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-10">
+                <!-- Phần 1: Ma trận Ưu tiên Gọi vốn (Priority Matrix) -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fa-solid fa-layer-group text-2xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-gray-900">Ma trận Ưu tiên Nguồn vốn</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
+                        
+                        <!-- TIER 1: BIG TECH -->
+                        <div class="bg-gradient-to-b from-blue-900 to-indigo-900 rounded-2xl p-6 border border-blue-800 shadow-xl relative overflow-hidden text-white flex flex-col transform hover:-translate-y-2 transition duration-300">
+                            <div class="absolute -right-4 -top-4 opacity-20 transform scale-150">
+                                <i class="fa-solid fa-cloud text-6xl text-blue-300"></i>
+                            </div>
+                            <div class="relative z-10 flex-grow">
+                                <div class="inline-block bg-blue-500/50 rounded px-2 py-1 text-xs font-bold uppercase mb-3">Ưu tiên #1 (Tier 1)</div>
+                                <h4 class="text-xl font-bold mb-2">Tài trợ từ Big Tech</h4>
+                                <p class="text-blue-200 text-sm mb-4 italic">Vốn không pha loãng (Non-dilutive)</p>
+                                
+                                <div class="space-y-4 text-sm mt-6">
+                                    <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+                                        <p class="font-bold text-blue-100 mb-1"><i class="fa-solid fa-bullseye text-blue-400 mr-2"></i>Mục tiêu:</p>
+                                        <p>Microsoft Founders Hub ($150K), Google Cloud ($200K).</p>
+                                    </div>
+                                    <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+                                        <p class="font-bold text-blue-100 mb-1"><i class="fa-solid fa-cubes text-blue-400 mr-2"></i>Sản phẩm cần có:</p>
+                                        <p>Prototype/MVP chạy trên nền tảng Cloud, có tích hợp GenAI (OpenAI/Gemini).</p>
+                                    </div>
+                                    <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+                                        <p class="font-bold text-blue-100 mb-1"><i class="fa-solid fa-clipboard-check text-blue-400 mr-2"></i>Điều kiện giải ngân:</p>
+                                        <p>Có pháp nhân hợp lệ, Domain riêng. (Mức $150K cần Backed by VC).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 2: LOCAL VCS -->
+                        <div class="bg-white rounded-2xl p-6 border-2 border-purple-500 shadow-lg relative overflow-hidden flex flex-col transform hover:-translate-y-2 transition duration-300">
+                            <div class="absolute top-0 right-0 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase">Tỷ lệ đỗ cao nhất</div>
+                            <div class="relative z-10 flex-grow mt-2">
+                                <div class="inline-block bg-purple-100 text-purple-800 rounded px-2 py-1 text-xs font-bold uppercase mb-3">Ưu tiên #2 (Tier 2)</div>
+                                <h4 class="text-xl font-bold mb-2 text-gray-900">Quỹ Seed Nội Địa</h4>
+                                <p class="text-gray-500 text-sm mb-4 italic">Đổi 10-20% lấy $100K - $200K</p>
+                                
+                                <div class="space-y-4 text-sm mt-6 text-gray-700">
+                                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                        <p class="font-bold text-purple-700 mb-1"><i class="fa-solid fa-bullseye mr-2"></i>Mục tiêu:</p>
+                                        <p>ThinkZone, Do Ventures, Touchstone.</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                        <p class="font-bold text-purple-700 mb-1"><i class="fa-solid fa-cubes mr-2"></i>Sản phẩm cần có:</p>
+                                        <p>Đã có Traction thật (Khách B2B đầu tiên), có MRR dù nhỏ ($1K-$5K/tháng). Giải quyết nỗi đau đặc thù tại VN.</p>
+                                    </div>
+                                    <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                                        <p class="font-bold text-red-700 mb-1"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Điều kiện giải ngân:</p>
+                                        <p>Bắt buộc chuyển đổi pháp nhân sang <b>Singapore Holding</b> (Tốn phí trước bạ).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TIER 3: GLOBAL VCS -->
+                        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow relative overflow-hidden flex flex-col transform hover:-translate-y-2 transition duration-300">
+                            <div class="relative z-10 flex-grow">
+                                <div class="inline-block bg-orange-100 text-orange-800 rounded px-2 py-1 text-xs font-bold uppercase mb-3">Ưu tiên #3 (Tier 3)</div>
+                                <h4 class="text-xl font-bold mb-2 text-gray-900">Quỹ Toàn Cầu</h4>
+                                <p class="text-gray-500 text-sm mb-4 italic">Standard Deal $500K (Post-money SAFE)</p>
+                                
+                                <div class="space-y-4 text-sm mt-6 text-gray-700">
+                                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                        <p class="font-bold text-orange-600 mb-1"><i class="fa-solid fa-bullseye mr-2"></i>Mục tiêu:</p>
+                                        <p>Y Combinator, 500 Global, Antler.</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                        <p class="font-bold text-orange-600 mb-1"><i class="fa-solid fa-rocket mr-2"></i>Sản phẩm cần có:</p>
+                                        <p>B2B SaaS không giới hạn biên giới. Thị trường Addressable (TAM) phải đạt hàng tỷ USD.</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                        <p class="font-bold text-orange-600 mb-1"><i class="fa-solid fa-clipboard-check mr-2"></i>Điều kiện giải ngân:</p>
+                                        <p>Tăng trưởng nóng (20-30% MoM). Founder nói tiếng Anh xuất sắc, có "Founder-Market Fit" tuyệt đối.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Deep Dive Data Section (3 boxes) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                    <!-- Deep Dive Tier 1 -->
+                    <div class="bg-blue-50/50 rounded-2xl p-6 border border-blue-100 shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-blue-900 mb-4 flex items-center border-b border-blue-200 pb-2"><i class="fa-solid fa-microscope text-blue-600 mr-2"></i> Deep Dive: Tier 1 (Cloud)</h4>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> <b>Microsoft Founders Hub:</b> Lên tới $150K (Level 4). Yêu cầu ngầm: Phải được "Backed" bởi quỹ VC đối tác. Tặng kèm $2,500 OpenAI API.</li>
+                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> <b>Google Cloud (Scale Tier):</b> Lên tới $200K (hoặc $350K cho AI-first). Giải ngân 100% năm đầu, 20% năm hai. Yêu cầu: Đã gọi vốn tổ chức (Institutional VC).</li>
+                            <li><i class="fa-solid fa-triangle-exclamation text-red-500 mr-2"></i> <b>Lưu ý:</b> Bootstrapped startup tự apply thường chỉ duyệt mức $5,000 (Level 2).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Deep Dive Tier 2 -->
+                    <div class="bg-purple-50/50 rounded-2xl p-6 border border-purple-100 shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-purple-900 mb-4 flex items-center border-b border-purple-200 pb-2"><i class="fa-solid fa-microscope text-purple-600 mr-2"></i> Deep Dive: Tier 2 (Nội địa)</h4>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li><i class="fa-solid fa-chart-line text-purple-500 mr-2"></i> <b>Valuation (2024):</b> Trung bình định giá vòng Seed tại VN dao động từ $2M - $5M Post-money. Cổ phần đánh đổi: 10% - 20%.</li>
+                            <li><i class="fa-solid fa-bullseye text-purple-500 mr-2"></i> <b>Metric Bắt buộc:</b> B2B SaaS cần MRR (Doanh thu định kỳ) từ $3,000 - $10,000/tháng và NRR (Net Revenue Retention) > 100%.</li>
+                            <li><i class="fa-solid fa-triangle-exclamation text-red-500 mr-2"></i> <b>Bẫy pháp lý:</b> Mở Holding tại Singapore (Pte. Ltd/VCC) tốn $2,500 - $4,000 chi phí chìm năm đầu.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Deep Dive Tier 3 -->
+                    <div class="bg-orange-50/50 rounded-2xl p-6 border border-orange-100 shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-orange-900 mb-4 flex items-center border-b border-orange-200 pb-2"><i class="fa-solid fa-microscope text-orange-600 mr-2"></i> Deep Dive: Tier 3 (Global)</h4>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li><i class="fa-solid fa-handshake text-orange-500 mr-2"></i> <b>Y Combinator Standard Deal:</b> $500,000. Cấu trúc: $125k lấy 7% cổ phần cố định + $375k dạng Uncapped MFN SAFE.</li>
+                            <li><i class="fa-solid fa-chart-pie text-orange-500 mr-2"></i> <b>Tỷ lệ chọi:</b> Dưới 1.5%. Khắc nghiệt hơn vào Harvard. Đòi hỏi tốc độ tăng trưởng cực đoan.</li>
+                            <li><i class="fa-solid fa-bolt text-orange-500 mr-2"></i> <b>Growth Target:</b> Yêu cầu Traction thần tốc (20% - 30% Month-over-Month). Thị trường TAM > $1 Tỷ USD.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lộ trình Giải phẫu Vòng Gọi vốn -->
+                <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-8 border border-gray-200 mb-8 shadow-sm">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center"><i class="fa-solid fa-route text-blue-600 mr-3"></i> Lộ trình: Các "Round" (Vòng Gọi Vốn) nghĩa là gì?</h3>
+                    <div class="relative border-l-2 border-blue-200 ml-4 md:ml-6 space-y-8 pb-4">
+                        
+                        <!-- Day Zero -->
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-0 w-6 h-6 bg-yellow-100 border-2 border-yellow-500 rounded-full flex items-center justify-center"><i class="fa-solid fa-lightbulb text-yellow-600 text-xs"></i></div>
+                            <h4 class="font-bold text-gray-900 text-lg">1. Day Zero / Idea Stage (Giai đoạn Ý tưởng)</h4>
+                            <p class="text-sm text-gray-600 mt-1 mb-3">Bạn chỉ có chuyên môn (Dev/Sale) và 1 bản Pitch Deck (PDF). Chưa có Code, chưa có Team. Quỹ đầu tư mạo hiểm nhảy vào lúc này chủ yếu để "nhào nặn" Founder.</p>
+                            <div class="bg-gray-50 border border-gray-100 rounded-lg p-3 mb-3 text-sm grid grid-cols-2 gap-2">
+                                <div><span class="text-gray-500 text-xs block">Mức gọi vốn:</span> <b class="text-gray-900">$20K - $50K</b></div>
+                                <div><span class="text-gray-500 text-xs block">Định giá (Valuation):</span> <b class="text-gray-900">~$500K</b></div>
+                            </div>
+                            <div class="bg-yellow-50 text-yellow-800 text-[12px] p-2 rounded border border-yellow-100 mb-3">
+                                <b>Lưu ý "Máu":</b> Tuyệt đối không chia quá <b>10% cổ phần</b> ở vòng này. Nếu bạn chia quá nhiều (VD: 30% cho thiên thần), cấu trúc Cap Table sẽ bị "nát", các Quỹ lớn ở vòng sau sẽ từ chối đầu tư ngay lập tức vì Founder không còn đủ động lực làm việc.
+                            </div>
+                            <div class="inline-block bg-yellow-100 border border-yellow-200 text-yellow-800 text-xs px-3 py-1 rounded font-semibold shadow-sm">👉 Quỹ tiêu biểu: Antler</div>
+                        </div>
+
+                        <!-- Pre-Seed -->
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-0 w-6 h-6 bg-blue-100 border-2 border-blue-500 rounded-full flex items-center justify-center"><i class="fa-solid fa-hammer text-blue-600 text-xs"></i></div>
+                            <h4 class="font-bold text-gray-900 text-lg">2. Pre-Seed Round (Tiền Hạt Giống)</h4>
+                            <p class="text-sm text-gray-600 mt-1 mb-3">Đã có Team (Thường là 1 CEO + 1 CTO). Đã code xong sản phẩm chạy thử (MVP) và có vài khách hàng xài thử miễn phí (Beta users). Cần tiền để hoàn thiện sản phẩm và ra mắt chính thức.</p>
+                            <div class="bg-gray-50 border border-gray-100 rounded-lg p-3 mb-3 text-sm grid grid-cols-2 gap-2">
+                                <div><span class="text-gray-500 text-xs block">Mức gọi vốn:</span> <b class="text-gray-900">$100K - $200K</b></div>
+                                <div><span class="text-gray-500 text-xs block">Định giá (Valuation):</span> <b class="text-gray-900">$1M - $2M</b></div>
+                            </div>
+                            <div class="bg-blue-50 text-blue-800 text-[12px] p-2 rounded border border-blue-100 mb-3">
+                                <b>Công cụ rót vốn:</b> Giai đoạn này rất khó định giá công ty, nên các Quỹ thường dùng công cụ <b>SAFE</b> (Quyền chọn mua cổ phần trong tương lai) thay vì mua Cổ phần (Equity) trực tiếp. Khẩu vị Quỹ lúc này là đầu tư vào "Con người" (Founder-Market Fit) hơn là sản phẩm.
+                            </div>
+                            <div class="inline-block bg-blue-100 border border-blue-200 text-blue-800 text-xs px-3 py-1 rounded font-semibold shadow-sm">👉 Quỹ tiêu biểu: ThinkZone, Antler</div>
+                        </div>
+
+                        <!-- Seed -->
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-0 w-6 h-6 bg-green-100 border-2 border-green-500 rounded-full flex items-center justify-center"><i class="fa-solid fa-seedling text-green-600 text-xs"></i></div>
+                            <h4 class="font-bold text-gray-900 text-lg">3. Seed Round (Vòng Hạt Giống)</h4>
+                            <p class="text-sm text-gray-600 mt-1 mb-3">Sản phẩm đã tung ra thị trường và chứng minh được "Product-Market Fit". Có dòng tiền trả phí đều đặn. Cần tiền để xây dựng đội ngũ Sales/Marketing chuyên nghiệp.</p>
+                            <div class="bg-gray-50 border border-gray-100 rounded-lg p-3 mb-3 text-sm grid grid-cols-2 gap-2">
+                                <div><span class="text-gray-500 text-xs block">Mức gọi vốn:</span> <b class="text-gray-900">$500K - $1M</b></div>
+                                <div><span class="text-gray-500 text-xs block">Chỉ số bắt buộc:</span> <b class="text-gray-900">MRR > $5,000</b></div>
+                            </div>
+                            <div class="bg-green-50 text-green-800 text-[12px] p-2 rounded border border-green-100 mb-3">
+                                <b>Metric Quyết định:</b> Tỷ lệ Rời bỏ (Churn Rate). Nếu MRR cao nhưng Churn Rate > 5%/tháng, Quỹ sẽ hiểu là phần mềm của bạn có vấn đề, khách hàng mua xong bỏ đi ngay. Phải giữ Churn Rate thật thấp. Mức độ pha loãng (Dilution) vòng này thường là <b>15% - 20%</b>.
+                            </div>
+                            <div class="inline-block bg-green-100 border border-green-200 text-green-800 text-xs px-3 py-1 rounded font-semibold shadow-sm">👉 Quỹ tiêu biểu: Nextrans, ThinkZone, Do Ventures</div>
+                        </div>
+
+                        <!-- Series A -->
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-0 w-6 h-6 bg-purple-100 border-2 border-purple-500 rounded-full flex items-center justify-center"><i class="fa-solid fa-rocket text-purple-600 text-xs"></i></div>
+                            <h4 class="font-bold text-gray-900 text-lg">4. Series A (Vòng Tăng Tốc)</h4>
+                            <p class="text-sm text-gray-600 mt-1 mb-3">Cỗ máy in tiền đã vào guồng. Mô hình kinh doanh B2B SaaS đã chứng minh khả năng sinh lời. Cần vốn siêu lớn để "Go Global" (Đánh chiếm quốc tế) hoặc đè bẹp hoàn toàn đối thủ trong nước.</p>
+                            <div class="bg-gray-50 border border-gray-100 rounded-lg p-3 mb-3 text-sm grid grid-cols-2 gap-2">
+                                <div><span class="text-gray-500 text-xs block">Mức gọi vốn:</span> <b class="text-gray-900">$2M - $10M</b></div>
+                                <div><span class="text-gray-500 text-xs block">Chỉ số bắt buộc:</span> <b class="text-gray-900">ARR > $1M</b></div>
+                            </div>
+                            <div class="bg-purple-50 text-purple-800 text-[12px] p-2 rounded border border-purple-100 mb-3">
+                                <b>Công thức LTV/CAC > 3:</b> Quỹ Series A không đầu tư bằng cảm xúc nữa, họ nhìn vào Unit Economics. Bạn phải chứng minh được: Chi phí để mang về 1 khách hàng mới (CAC) phải rẻ hơn ít nhất 3 lần so với Tổng lợi nhuận mà khách hàng đó mang lại trọn đời (LTV).
+                            </div>
+                            <div class="inline-block bg-purple-100 border border-purple-200 text-purple-800 text-xs px-3 py-1 rounded font-semibold shadow-sm">👉 Quỹ tiêu biểu: Do Ventures, Y Combinator (Follow-on)</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Rolodex Quỹ Gợi ý -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm relative overflow-hidden mb-12">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center"><i class="fa-solid fa-address-book text-purple-600 mr-3"></i> Rolodex: Danh bạ 4 Quỹ Khả thi nhất cho B2B SaaS</h3>
+                    <p class="text-gray-600 mb-6">Đây là danh sách các quỹ đang hoạt động cực kỳ năng nổ (Active) tại thị trường Việt Nam và có khẩu vị đầu tư phù hợp với các mô hình B2B SaaS (nhờ khả năng scale nhanh).</p>
+                    
+                    <div class="flex flex-col gap-8">
+                        <!-- Quỹ 1 -->
+                        <div class="bg-white rounded-2xl p-6 border-l-4 border-l-blue-500 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative group overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-4">
+                                <div>
+                                    <h4 class="font-bold text-2xl text-gray-900 group-hover:text-blue-700 transition-colors">1. ThinkZone Ventures (Fund II - $60M)</h4>
+                                    <p class="text-sm text-gray-500 mt-1 font-medium"><i class="fa-solid fa-users text-blue-400 mr-2"></i>Partners: Bùi Thành Đô, Đỗ Hữu Hưng</p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full border border-blue-200 shadow-sm">Pre-Seed / Seed</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <ul class="space-y-4 text-sm text-gray-700">
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-money-bill-wave text-green-600"></i></div> <div><b class="block text-gray-900">Ticket Size:</b> $50,000 - $500,000</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-yellow-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-star text-yellow-600"></i></div> <div><b class="block text-gray-900">Portfolio B2B SaaS:</b> GIMO, EMDDI, Udata.</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-link text-purple-600"></i></div> <div><b class="block text-gray-900">Kết nối:</b> Qua chương trình Global Minds Accelerator.</div></li>
+                                </ul>
+                                <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100 shadow-inner">
+                                    <p class="font-bold text-blue-900 text-sm mb-3 flex items-center"><i class="fa-solid fa-bolt text-blue-500 mr-2 text-lg"></i>Khẩu vị ngầm & Tips tiếp cận:</p>
+                                    <ul class="text-sm text-gray-700 leading-relaxed space-y-2 list-disc pl-5">
+                                        <li><b>Mạng lưới LPs "Khủng":</b> Đứng sau ThinkZone là các Tập đoàn nội địa khổng lồ (IPA Investments, Phú Thái, Stavian). Nếu B2B SaaS của bạn phục vụ mảng Retail, Logistics hoặc Tài chính, ThinkZone có thể giúp bạn <b>chốt deal trực tiếp</b> với các tập đoàn này.</li>
+                                        <li><b>Tips thực chiến:</b> Hãy đăng ký tham gia chương trình tăng tốc <b>Global Minds Accelerator (GMA)</b> của họ. Nếu lọt vào Top đầu, cơ hội nhận Term Sheet gần như là 90% với thời gian giải ngân cực nhanh (4-6 tuần).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quỹ 2 -->
+                        <div class="bg-white rounded-2xl p-6 border-l-4 border-l-purple-500 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative group overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-4">
+                                <div>
+                                    <h4 class="font-bold text-2xl text-gray-900 group-hover:text-purple-700 transition-colors">2. Do Ventures (Fund I - $50M)</h4>
+                                    <p class="text-sm text-gray-500 mt-1 font-medium"><i class="fa-solid fa-users text-purple-400 mr-2"></i>Partners: Lê Hoàng Uyên Vy, Dzung Nguyễn</p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-purple-100 text-purple-700 text-xs font-bold px-4 py-2 rounded-full border border-purple-200 shadow-sm">Seed / Series A</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <ul class="space-y-4 text-sm text-gray-700">
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-money-bill-wave text-green-600"></i></div> <div><b class="block text-gray-900">Ticket Size:</b> $200,000 - $3,000,000</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-yellow-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-star text-yellow-600"></i></div> <div><b class="block text-gray-900">Portfolio B2B SaaS:</b> Palexy, Bizzi (Case study kinh điển), Advance.</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-link text-purple-600"></i></div> <div><b class="block text-gray-900">Kết nối:</b> Cần Warm Intro từ Founder trong mạng lưới.</div></li>
+                                </ul>
+                                <div class="bg-purple-50/50 p-5 rounded-2xl border border-purple-100 shadow-inner">
+                                    <p class="font-bold text-purple-900 text-sm mb-3 flex items-center"><i class="fa-solid fa-bolt text-purple-500 mr-2 text-lg"></i>Khẩu vị ngầm & Tips tiếp cận:</p>
+                                    <ul class="text-sm text-gray-700 leading-relaxed space-y-2 list-disc pl-5">
+                                        <li><b>Nỗi ám ảnh về Data:</b> Do Ventures nổi tiếng có vòng Due Diligence (Thẩm định) khắt khe nhất Việt Nam. Đánh giá cực cao các Founder có tư duy Data-driven, biết rành rọt về Phễu chuyển đổi (Funnel) và Phân tích người dùng (Cohort Analysis).</li>
+                                        <li><b>Tips thực chiến:</b> Đừng đi Pitching nếu bạn không thuộc lòng các chỉ số Unit Economics (LTV, CAC, Payback Period). Bạn bắt buộc phải chuẩn bị 1 thư mục <b>Data Room (Notion/Drive)</b> cực kỳ quy củ và 1 bản Financial Model (Excel P&L dự phóng 3 năm) không có tì vết.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quỹ 3 -->
+                        <div class="bg-white rounded-2xl p-6 border-l-4 border-l-teal-500 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative group overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-4">
+                                <div>
+                                    <h4 class="font-bold text-2xl text-gray-900 group-hover:text-teal-700 transition-colors">3. Nextrans (Hàn Quốc)</h4>
+                                    <p class="text-sm text-gray-500 mt-1 font-medium"><i class="fa-solid fa-users text-teal-400 mr-2"></i>Partner tại VN: Lê Hàn Tuệ Lâm</p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-teal-100 text-teal-700 text-xs font-bold px-4 py-2 rounded-full border border-teal-200 shadow-sm">Seed</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <ul class="space-y-4 text-sm text-gray-700">
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-money-bill-wave text-green-600"></i></div> <div><b class="block text-gray-900">Ticket Size:</b> $50,000 - $200,000</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-yellow-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-star text-yellow-600"></i></div> <div><b class="block text-gray-900">Portfolio B2B SaaS:</b> Base.vn (Exit huyền thoại), TopCV, BuyMed.</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-link text-purple-600"></i></div> <div><b class="block text-gray-900">Kết nối:</b> Đội ngũ Investment Manager cực kỳ active qua tin nhắn LinkedIn.</div></li>
+                                </ul>
+                                <div class="bg-teal-50/50 p-5 rounded-2xl border border-teal-100 shadow-inner">
+                                    <p class="font-bold text-teal-900 text-sm mb-3 flex items-center"><i class="fa-solid fa-bolt text-teal-500 mr-2 text-lg"></i>Khẩu vị ngầm & Tips tiếp cận:</p>
+                                    <ul class="text-sm text-gray-700 leading-relaxed space-y-2 list-disc pl-5">
+                                        <li><b>Phong cách Đầu tư Nhanh:</b> Quyết định rót vốn (Term Sheet) được đưa ra cực kỳ nhanh (có thể chỉ 2-3 tuần). Khẩu vị ưa thích là các phần mềm B2B số hoá các ngành công nghiệp truyền thống (Nhân sự, Y tế, Sản xuất).</li>
+                                        <li><b>Tips thực chiến:</b> Không nhất thiết phải cần người quen giới thiệu (Warm intro). Nextrans có một đội ngũ Investment Analyst cực kỳ năng nổ. Bạn hoàn toàn có thể <b>Cold-message trực tiếp trên LinkedIn</b> kèm theo 1 bản Deck khoe Traction (Tốc độ tăng trưởng) ấn tượng, họ sẽ set lịch họp ngay lập tức.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quỹ 4 -->
+                        <div class="bg-white rounded-2xl p-6 border-l-4 border-l-orange-500 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative group overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-4">
+                                <div>
+                                    <h4 class="font-bold text-2xl text-gray-900 group-hover:text-orange-700 transition-colors">4. Antler Vietnam</h4>
+                                    <p class="text-sm text-gray-500 mt-1 font-medium"><i class="fa-solid fa-users text-orange-400 mr-2"></i>Partner tại VN: Erik Jonsson</p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="bg-orange-100 text-orange-700 text-xs font-bold px-4 py-2 rounded-full border border-orange-200 shadow-sm">Day Zero / Pre-Seed</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <ul class="space-y-4 text-sm text-gray-700">
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-money-bill-wave text-green-600"></i></div> <div><b class="block text-gray-900">Ticket Size:</b> Đúng $110,000 cho 11% cổ phần</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-yellow-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-star text-yellow-600"></i></div> <div><b class="block text-gray-900">Portfolio B2B:</b> Alternō, Buymed (Antler Global).</div></li>
+                                    <li class="flex items-start"><div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-link text-purple-600"></i></div> <div><b class="block text-gray-900">Kết nối:</b> Đăng ký tham gia Cohort (Khóa ươm tạo 10 tuần).</div></li>
+                                </ul>
+                                <div class="bg-orange-50/50 p-5 rounded-2xl border border-orange-100 shadow-inner">
+                                    <p class="font-bold text-orange-900 text-sm mb-3 flex items-center"><i class="fa-solid fa-bolt text-orange-500 mr-2 text-lg"></i>Khẩu vị ngầm & Tips tiếp cận:</p>
+                                    <ul class="text-sm text-gray-700 leading-relaxed space-y-2 list-disc pl-5">
+                                        <li><b>Ghép cặp Co-founder:</b> Mô hình "Residency" độc đáo. Họ trả lương cứng (Stipend) để bạn tham gia khóa 10 tuần tìm người đá cặp. Họ chuộng ghép 1 Founder thuần Tech (Giỏi code) với 1 Founder thuần Business (Giỏi Sale B2B). Điểm cộng lớn nếu Founder có Domain Expertise sâu (Từng làm sếp ở mảng đó).</li>
+                                        <li><b>Tips thực chiến:</b> Khoản đầu tư $110K đổi lấy 11% là <b>Fixed (Cố định), không thể đàm phán</b>. Quy tắc ngầm là bạn bắt buộc phải <b>Nghỉ việc (Quit job)</b> để tham gia Full-time. Đừng nộp hồ sơ nếu bạn vẫn đang làm Part-time hưởng lương công ty cũ.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phần 2: Rào cản Thực thi -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Pitch Deck Kit -->
+                    <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm relative overflow-hidden group flex flex-col">
+                        <div class="absolute -right-4 -top-4 bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-laptop-file text-3xl text-gray-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-box-open text-gray-600 mr-3"></i> Đóng gói Hồ sơ (Pitching Kit)</h3>
+                        <p class="text-sm text-gray-600 mb-5 flex-grow">Đừng lan man viết Business Plan dài 50 trang. VCs chỉ dành trung bình <b>3 phút</b> để lướt qua hồ sơ của bạn. Bạn chỉ cần đúng 2 tài liệu chuẩn mực thung lũng Silicon:</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-600 p-2 rounded mr-3 mt-1"><i class="fa-solid fa-file-powerpoint"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Pitch Deck 10 Slides</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Trọng tâm duy nhất là <b>Traction</b> (Tốc độ tăng trưởng) và Unit Economics (CAC, LTV).</p>
+                                    <p class="text-[11px] text-blue-800 bg-blue-50 p-2 rounded border border-blue-100"><b>Hack-tip:</b> Tuyệt đối không gửi file PDF đính kèm. Hãy dùng <b>DocSend</b> để gửi link. Bạn sẽ "track" được VC có mở xem hay không, và họ dừng lại ở Slide nào lâu nhất để chuẩn bị kịch bản phòng thủ.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-red-100 text-red-600 p-2 rounded mr-3 mt-1"><i class="fa-solid fa-video"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Founder Video (1 Phút)</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Không cần kỹ xảo. Ngồi nói thẳng vào camera. Chứng minh <b>"Founder-Market Fit"</b> (Tại sao Team của bạn là những người duy nhất giải quyết được nỗi đau này).</p>
+                                    <p class="text-[11px] text-red-800 bg-red-50 p-2 rounded border border-red-100"><b>Lưu ý:</b> Bắt buộc phải nói bằng <b>Tiếng Anh</b> chuẩn. Các quỹ ngoại rất sợ rót vốn cho Founder không thể giao tiếp trực tiếp với họ.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pháp lý Singapore -->
+                    <div class="bg-red-50/40 rounded-3xl p-8 border border-red-100 shadow-sm relative overflow-hidden group flex flex-col">
+                        <div class="absolute -right-4 -top-4 bg-red-100 w-24 h-24 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-gavel text-3xl text-red-200"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-red-900 mb-4 flex items-center"><i class="fa-solid fa-skull-crossbones text-red-600 mr-3"></i> Rào cản Pháp lý Singapore</h3>
+                        <p class="text-sm text-gray-700 mb-5 flex-grow">99% Quỹ ngoại KHÔNG rót vốn vào Cty Cổ phần VN (Do luật FDI khó thoái vốn). Bạn buộc phải lập <b>Holding Company</b> tại Singapore (Sở hữu 100% Cty VN). Đây là "sát thủ" bào mòn dòng tiền của các dự án Bootstrapping:</p>
+                        
+                        <div class="bg-white p-4 rounded-xl border border-red-100 shadow-sm text-sm">
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-gray-600">Phí Đăng ký, Thư ký, Địa chỉ ảo</span>
+                                <span class="font-medium text-gray-900">~ S$ 1.000 / năm</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-red-200 bg-red-50 px-2 -mx-2">
+                                <span class="text-red-700 font-bold">Thuê Giám đốc bản địa (Nominee)</span>
+                                <span class="font-bold text-red-700">~ S$ 3.000 / năm</span>
+                            </div>
+                            <p class="text-[10px] text-gray-500 mt-2 italic">*Luật Sing bắt buộc phải có 1 Giám đốc là công dân hoặc PR tại Sing. Trừ khi bạn có thẻ xanh Sing, bạn bắt buộc phải tốn tiền thuê bù nhìn.</p>
+                            
+                            <div class="mt-4 p-3 bg-gray-900 rounded-lg text-center shadow-inner">
+                                <p class="text-gray-400 text-[10px] uppercase tracking-widest font-bold mb-1">Chuẩn bị Tiền Túi</p>
+                                <p class="text-white text-lg font-extrabold">$2.500 - $4.000 USD / Năm</p>
+                            </div>
+                            
+                            <div class="mt-3 bg-yellow-50 text-yellow-800 text-[11px] p-2 rounded border border-yellow-200 text-center font-bold">
+                                Lời khuyên máu: CHỈ lập pháp nhân Sing khi Quỹ đã ký Term Sheet. Lập sớm = Đốt tiền oan!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phần 3: Vũ khí Đàm phán -->
+                <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-3xl p-8 border border-orange-200 shadow-sm relative overflow-hidden group hover:border-orange-300 transition">
+                    <div class="absolute -right-4 -top-4 bg-orange-100 w-24 h-24 rounded-full flex items-center justify-center opacity-50">
+                        <i class="fa-solid fa-lightbulb text-4xl text-orange-400"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="inline-block bg-orange-500/20 border border-orange-400/50 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase mb-4 text-orange-800">Negotiation Tactics</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-handshake-angle text-orange-500 mr-3"></i> Vũ khí đàm phán chốt Deal với Quỹ Nội Địa</h3>
+                        <p class="text-sm text-gray-700 mb-6 leading-relaxed">Nỗi sợ lớn nhất của các Quỹ khi đầu tư B2B SaaS tại Việt Nam là <b>Chi phí thu hút khách hàng (CAC)</b> cực cao do rào cản giáo dục thị trường. Hãy dùng bài toán <b>Microsoft Co-sell</b> để đập tan nỗi sợ này.</p>
+                        
+                        <div class="bg-white p-6 rounded-2xl border border-orange-100 shadow-sm">
+                            <h4 class="font-bold text-gray-800 mb-3"><i class="fa-solid fa-comment-dots text-orange-400 mr-2"></i> Kịch bản chốt Deal tại phòng họp:</h4>
+                            <p class="text-sm text-gray-700 italic border-l-4 border-orange-400 pl-4 py-3 bg-orange-50/50 rounded-r-lg mb-4 leading-relaxed">
+                                "Các anh không cần lo chúng tôi đốt tiền vào việc nuôi một đội Sales B2B cồng kềnh. Khi hệ thống đạt trạng thái <b>Co-sell Ready</b>, chính mạng lưới Sale của Microsoft sẽ mang phần mềm này đi bán chéo cho hàng triệu doanh nghiệp sử dụng Azure khác. Chi phí bán hàng (CAC) của chúng tôi về dài hạn sẽ cực kỳ thấp."
+                            </p>
+                            <p class="text-xs text-gray-500 font-medium">👉 Bí quyết này giải quyết dứt điểm nỗi sợ lớn nhất của Quỹ VN về chi phí thu hút khách hàng, giúp bạn chốt deal nhanh và lấy được định giá cao nhất!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END TAB 2 -->
+
+        <!-- TAB 3: GO-TO-MARKET & UNIT ECONOMICS -->
+        <div id="tab-gtm" class="tab-content hidden" style="opacity: 0;">
+            
+            <!-- Banner -->
+            <div class="bg-gradient-to-br from-rose-900 to-red-800 rounded-3xl p-8 md:p-10 mb-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                    <i class="fa-solid fa-rocket text-9xl"></i>
+                </div>
+                <div class="relative z-10 w-full md:w-3/4">
+                    <div class="inline-block bg-rose-500/30 border border-rose-400/50 rounded-full px-4 py-1 text-xs font-bold tracking-widest uppercase mb-4 text-rose-200">Business Playbook</div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-5 leading-tight">Go-To-Market & Chỉ số Sống còn</h2>
+                    <p class="text-lg text-rose-100 leading-relaxed font-light">
+                        Vá 5 lỗ hổng chiến lược: Cách kiếm <strong class="text-white">$100K doanh thu đầu tiên</strong>, thiết lập đội hình B2B Sales, và xây dựng rào cản phòng thủ để chốt M&A.
+                    </p>
+                </div>
+            </div>
+
+            <!-- GTM Playbook & Unit Economics -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Hacking $100K -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm relative overflow-hidden group">
+                    <div class="absolute -right-4 -top-4 bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-sack-dollar text-3xl text-rose-100"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center"><i class="fa-solid fa-map-location-dot text-rose-600 mr-3"></i> 1. Chiến dịch $100K Đầu tiên</h3>
+                    <p class="text-sm text-gray-500 mb-6">Trúng thầu Co-sell yêu cầu $100K ACR. Bạn lấy khách hàng từ đâu?</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-rose-50 p-4 rounded-2xl border border-rose-100">
+                            <h4 class="font-bold text-rose-900 mb-2 text-sm"><i class="fa-solid fa-handshake mr-2 text-rose-500"></i>Bắt tay CSP/LSP Nội địa</h4>
+                            <p class="text-xs text-gray-700 leading-relaxed">
+                                Đừng tự đi bán (Direct Sales) khi bạn chưa có tên tuổi. Hãy gõ cửa các <b>Cloud Solution Providers (CSP)</b> khổng lồ tại VN như FPT, CMC, Matbao. Họ đang bán Microsoft 365/Azure cho hàng ngàn doanh nghiệp. Đề nghị chiết khấu (Rev-share) 20-30% để họ Bundle (Gói) phần mềm SaaS của bạn vào hợp đồng của họ.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-2 text-sm"><i class="fa-solid fa-envelope-open-text mr-2 text-gray-500"></i>Cold Outreach (Outbound)</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                Sử dụng LinkedIn Sales Navigator quét tệp C-Level (CEO, CIO). Không bán tính năng, hãy bán <b>"Giải pháp tăng ROI trong 30 ngày"</b>. Tỷ lệ chuyển đổi ngành B2B qua Cold Email rất thấp (1-2%), đòi hỏi sự bền bỉ.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit Economics Dashboard -->
+                <div class="bg-gray-900 rounded-3xl p-8 border border-gray-800 shadow-xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                    <h3 class="text-xl font-bold text-white mb-2 flex items-center relative z-10"><i class="fa-solid fa-chart-line text-emerald-400 mr-3"></i> 2. Khung Tham Chiếu Chỉ Số (Unit Economics)</h3>
+                    <p class="text-sm text-gray-400 mb-6 relative z-10">Bảng điều khiển tài chính mà mọi VC sẽ "truy bài" bạn trong phòng họp.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 relative z-10">
+                        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">LTV : CAC Ratio</p>
+                            <div class="text-2xl font-black text-emerald-400 mb-1">&gt; 3 : 1</div>
+                            <p class="text-[10px] text-gray-500 line-clamp-2">Giá trị trọn đời KH (LTV) phải gấp 3 lần chi phí mua KH (CAC). Dưới 3, công ty đang đốt tiền.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Net Retention (NRR)</p>
+                            <div class="text-2xl font-black text-blue-400 mb-1">&gt; 110%</div>
+                            <p class="text-[10px] text-gray-500 line-clamp-2">Doanh thu từ khách cũ tăng lên (nhờ Upsell/Cross-sell) phải bù đắp hoàn toàn cho số khách bỏ đi.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Gross Churn Rate</p>
+                            <div class="text-2xl font-black text-rose-400 mb-1">&lt; 1% <span class="text-sm font-normal text-gray-500">/tháng</span></div>
+                            <p class="text-[10px] text-gray-500 line-clamp-2">B2B SaaS có vòng đời dài. Mất hơn 1% khách mỗi tháng là dấu hiệu Product-Market Fit đang hỏng.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Gross Margin</p>
+                            <div class="text-2xl font-black text-yellow-400 mb-1">75 - 85%</div>
+                            <p class="text-[10px] text-gray-500 line-clamp-2">Chi phí Server/Cloud phải thật rẻ so với giá bán. Nếu thấp hơn 70%, định giá (Valuation) sẽ bị ép.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Team & Moats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Team -->
+                <div class="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-3"><i class="fa-solid fa-users-gear text-indigo-500 mr-2"></i> 3. Đội hình "Dream Team"</h3>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-code"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900">Tech Lead (Builder)</h4>
+                                <p class="text-xs text-gray-600">Đảm bảo Product ổn định, bảo mật Enterprise, và UI/UX mượt mà.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-briefcase"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900">B2B Sales (Hunter)</h4>
+                                <p class="text-xs text-gray-600">Kỹ năng chốt hợp đồng tiền tỷ. Biết điều hướng các vòng phê duyệt phức tạp của tập đoàn.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-heart"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900">CSM (Farmer)</h4>
+                                <p class="text-xs text-gray-600">Customer Success. Cầm tay chỉ việc cho khách dùng phần mềm để tránh "Churn" (Hủy gói).</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Moats -->
+                <div class="md:col-span-2 bg-gradient-to-r from-gray-50 to-rose-50/30 rounded-3xl p-6 border border-gray-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-3"><i class="fa-solid fa-shield-halved text-rose-500 mr-2"></i> 4. Rào cản Phòng thủ (Defensive Moats)</h3>
+                    <p class="text-sm text-gray-600 mb-5">Đừng dựa dẫm vào mỗi cái mác "Microsoft Partner". Quỹ đầu tư cần thấy rào cản thực sự để đối thủ không thể copy bạn:</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-2xl border border-gray-100">
+                            <h4 class="font-bold text-gray-800 text-sm mb-2"><i class="fa-solid fa-link text-gray-400 mr-1"></i> High Switching Cost</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                (Chi phí chuyển đổi cao). Hãy code sản phẩm sao cho nó ăn sâu vào workflow hàng ngày của nhân viên (tích hợp API sâu vào hệ thống ERP/CRM cũ). Khi họ muốn bỏ bạn sang đối thủ, sự đau đớn (Đào tạo lại từ đầu, đứt gãy quy trình) phải lớn hơn số tiền họ tiết kiệm được.
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border border-gray-100">
+                            <h4 class="font-bold text-gray-800 text-sm mb-2"><i class="fa-solid fa-database text-blue-400 mr-1"></i> Data Network Effect</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                (Hiệu ứng mạng dữ liệu). Khách hàng sử dụng càng nhiều, AI của bạn càng học được nhiều Data ngành đặc thù -> AI càng thông minh -> Trải nghiệm khách hàng càng tốt. Kẻ đi sau có thể copy Source Code, nhưng không thể copy kho Data mà bạn đã huấn luyện.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exit Strategy -->
+            <div class="bg-rose-50/50 rounded-3xl p-8 border border-rose-200 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10">
+                    <i class="fa-solid fa-door-open text-9xl text-rose-900"></i>
+                </div>
+                <div class="relative z-10 md:w-3/4">
+                    <h3 class="text-2xl font-bold text-rose-900 mb-3 flex items-center"><i class="fa-solid fa-sign-out-alt mr-3 text-rose-600"></i> 5. Tầm nhìn Thoái vốn (M&A Exit Strategy)</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed mb-6">
+                        Đừng vẽ kỳ lân (Unicorn) hay IPO tại Việt Nam, điều đó phi thực tế với các quỹ Seed. Hãy bán cho Nhà đầu tư một câu chuyện **Trade Sale (Bán lại cổ phần cho ông lớn)** thực dụng:
+                    </p>
+                    
+                    <ul class="space-y-3 text-sm text-gray-800">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-rose-500 mt-1 mr-3"></i>
+                            <div><b>Thâu tóm bởi Tập đoàn Nội địa:</b> Xây dựng sản phẩm chiếm lĩnh một ngách (VD: Quản trị Nhân sự HRM). Sau 3-5 năm, các "Whale" như FPT, VNG, Viettel hoặc Base.vn sẽ muốn mua đứt (Acqui-hire) bạn để hoàn thiện hệ sinh thái của họ thay vì tự code lại từ đầu.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-rose-500 mt-1 mr-3"></i>
+                            <div><b>Lọt mắt xanh Private Equity (PE) khu vực SEA:</b> Đạt ngưỡng $1M-$2M ARR (Doanh thu năm), duy trì lợi nhuận ổn định. Các quỹ PE từ Singapore sẽ tiếp quản dự án của bạn làm bàn đạp tiến vào thị trường 100 triệu dân.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Product Thesis Section -->
+            <div class="mt-12 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                        <i class="fa-solid fa-gem text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-gray-900 tracking-tight">6. Đề xuất Ngách Sản Phẩm (Product Thesis)</h3>
+                </div>
+                <p class="text-gray-600 mb-8 max-w-3xl">Để tận dụng hệ sinh thái <b>Microsoft Co-sell</b> và tạo sự hấp dẫn tuyệt đối với các Quỹ đầu tư mạo hiểm, sản phẩm cần giải quyết "nỗi đau rỉ máu" và có khả năng bám rễ sâu vào hệ thống doanh nghiệp (High Switching Cost). Dưới đây là 3 ngách B2B SaaS tiềm năng nhất:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Niche 1: Frontline OpsTech -->
+                    <div class="bg-white rounded-3xl p-6 border-t-4 border-blue-500 border-x border-b border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden flex flex-col group">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                        <div class="mb-4">
+                            <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">OpsTech / HRTech</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-blue-700 transition-colors">Hệ điều hành cho "Frontline Workers"</h4>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Mini-App nhúng thẳng vào MS Teams trên điện thoại dành riêng cho công nhân nhà máy FDI hoặc nhân viên bán lẻ. Hỗ trợ đổi ca, điểm danh qua GPS (Geo-fencing), và đào tạo an toàn lao động.</p>
+                        
+                        <div class="space-y-3 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 flex-grow">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-gray-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Target:</b> Khối sản xuất FDI (VD: Samsung, Pouchen), Chuỗi bán lẻ/F&B (WinMart, Golden Gate).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-money-bill-wave text-green-500 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Pricing:</b> $1 - $2 / User / Tháng. (Bán số lượng lớn 1.000 - 10.000 users/hợp đồng).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-server text-indigo-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Tech Stack:</b> Teams Toolkit, Azure Entra ID (Identity), Power Automate.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-gray-100 pt-4">
+                            <div class="flex items-start">
+                                <i class="fa-brands fa-microsoft text-blue-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Lợi thế MS:</b> Đẩy mạnh mảng Teams cho Frontline. Dễ xin vốn Co-sell.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-shield-halved text-rose-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Moat:</b> Khóa chặt luồng giao tiếp nội bộ nhà máy. Rất khó để GĐ Nhân sự gỡ bỏ.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Niche 2: Legal AI Copilot -->
+                    <div class="bg-white rounded-3xl p-6 border-t-4 border-purple-500 border-x border-b border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden flex flex-col group">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                        <div class="mb-4">
+                            <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">LegalTech / AI</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-purple-700 transition-colors">Trợ lý AI Rà soát Hợp đồng (Word Plugin)</h4>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Add-in cài trực tiếp vào MS Word. Sử dụng Azure OpenAI (GPT-4) được train bằng luật VN để tự động gạch chân điều khoản rủi ro, cảnh báo thiếu sót và đề xuất câu chữ khi soạn hợp đồng.</p>
+                        
+                        <div class="space-y-3 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 flex-grow">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-gray-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Target:</b> Top Law Firms (YKVN, VILAF), Khối Pháp chế Ngân hàng (Techcombank) & BĐS.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-money-bill-wave text-green-500 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Pricing:</b> $50 - $100 / User / Tháng (High-ticket vì tiết kiệm hàng trăm giờ làm việc).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-server text-indigo-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Tech Stack:</b> Azure OpenAI, Azure AI Search (RAG), MS Office JS API.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-gray-100 pt-4">
+                            <div class="flex items-start">
+                                <i class="fa-brands fa-microsoft text-blue-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Lợi thế MS:</b> Doanh nghiệp 100% dùng Word. Tiếp cận khách ngay tại "bàn làm việc".</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-shield-halved text-rose-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Moat:</b> Data Network Effect. Càng quét nhiều hợp đồng, AI bắt lỗi luật VN càng giỏi.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Niche 3: ESG Carbon Accounting -->
+                    <div class="bg-white rounded-3xl p-6 border-t-4 border-emerald-500 border-x border-b border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden flex flex-col group">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                        <div class="mb-4">
+                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">CleanTech / SaaS</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">Báo cáo Dấu chân Carbon (ESG)</h4>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Tự động gom Data từ hóa đơn điện, vận tải để xuất Report ESG chuẩn CBAM (Châu Âu). Giúp các nhà máy xuất khẩu VN không bị ăn phạt hoặc cấm cửa khi xuất hàng sang EU từ 2026.</p>
+                        
+                        <div class="space-y-3 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 flex-grow">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-gray-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Target:</b> Nhà máy Da giày, Dệt may, Đồ gỗ xuất khẩu sang thị trường Châu Âu / Mỹ.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-money-bill-wave text-green-500 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Pricing:</b> $10.000 - $30.000 / Năm (Enterprise License). Bán theo gói giải pháp tổng thể.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-server text-indigo-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Tech Stack:</b> Microsoft Cloud for Sustainability, Power BI, Azure IoT (nối cảm biến).</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-gray-100 pt-4">
+                            <div class="flex items-start">
+                                <i class="fa-brands fa-microsoft text-blue-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Lợi thế MS:</b> "Cloud for Sustainability" là chiến lược Core của MS toàn cầu.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-shield-halved text-rose-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Moat:</b> Compliance (Ép buộc). Không mua phần mềm = Khỏi xuất khẩu. Churn rate ~ 0%.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Niche 4: Retail CDP -->
+                    <div class="bg-white rounded-3xl p-6 border-t-4 border-orange-500 border-x border-b border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden flex flex-col group">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                        <div class="mb-4">
+                            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">RetailTech / MarTech</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-orange-700 transition-colors">Mini-CDP Gộp kênh (Zalo, POS, FB)</h4>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Nền tảng Dữ liệu Khách hàng (CDP) bản thu gọn. Gom Data từ Zalo OA, Facebook, và máy tính tiền POS nội địa (KiotViet) về một Dashboard để AI tự động phân tập khách hàng và kịch bản gửi tin nhắn Re-marketing.</p>
+                        
+                        <div class="space-y-3 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 flex-grow">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-gray-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Target:</b> Chuỗi F&B tầm trung (Katinat, Phê La), Chuỗi thời trang (Routine, Juno).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-money-bill-wave text-green-500 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Pricing:</b> $300 - $500 / Tháng (Mô hình SaaS Subscriptions chuẩn).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-server text-indigo-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Tech Stack:</b> Azure Cosmos DB (chứa Data đa luồng), Power BI Embedded.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-gray-100 pt-4">
+                            <div class="flex items-start">
+                                <i class="fa-brands fa-microsoft text-blue-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Lợi thế MS:</b> Microsoft Cloud for Retail đang thiếu các đối tác làm tích hợp Local (như Zalo).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-shield-halved text-rose-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Moat:</b> Data Gravity (Lực hấp dẫn dữ liệu). Khi Data khách hàng đã nằm ở đây, họ không thể chuyển đi.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Niche 5: B2B Invoice Factoring -->
+                    <div class="bg-white rounded-3xl p-6 border-t-4 border-yellow-500 border-x border-b border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden flex flex-col group">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                        <div class="mb-4">
+                            <span class="bg-yellow-100 text-yellow-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">FinTech / ERP</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-yellow-700 transition-colors">SaaS Chiết khấu Hóa đơn (Factoring)</h4>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Cổng kết nối phần mềm hóa đơn/ERP của SMEs VN với hệ thống của Ngân hàng. Giúp SMEs bán lại hóa đơn chưa thu tiền (do bị giam công nợ 60-90 ngày) cho Ngân hàng để lấy tiền mặt ngay lập tức.</p>
+                        
+                        <div class="space-y-3 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 flex-grow">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-gray-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Target:</b> SMEs B2B, Công ty Xây dựng/Vật tư (thường xuyên bị giam vốn).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-money-bill-wave text-green-500 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Pricing:</b> Thu phí giao dịch 0.5% - 1% trên tổng giá trị hóa đơn giải ngân.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-server text-indigo-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Tech Stack:</b> Dynamics 365 API, Azure API Management, Azure SQL (Bảo mật cao).</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-gray-100 pt-4">
+                            <div class="flex items-start">
+                                <i class="fa-brands fa-microsoft text-blue-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Lợi thế MS:</b> Bảo mật cấp doanh nghiệp của Azure (Đạt chuẩn PCI-DSS) là tấm vé thuyết phục Bank.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-shield-halved text-rose-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Moat:</b> Lock-in tài chính. Trở thành "mạch máu" dòng tiền, sự phụ thuộc là tuyệt đối.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Niche 6: CyberSec Compliance -->
+                    <div class="bg-white rounded-3xl p-6 border-t-4 border-red-500 border-x border-b border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden flex flex-col group">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-full opacity-50 -z-10 group-hover:scale-110 transition-transform"></div>
+                        <div class="mb-4">
+                            <span class="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">SecTech / EdTech</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-3 group-hover:text-red-700 transition-colors">Compliance & Phishing Training AI</h4>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">Tích hợp vào Outlook/Teams để tự động gửi các email lừa đảo (Phishing) giả lập cho nhân viên. Nếu ai bấm vào sẽ tự động bị điều hướng đến khóa học ngắn 5 phút về An toàn thông tin và bảo vệ dữ liệu.</p>
+                        
+                        <div class="space-y-3 mb-4 bg-gray-50 p-3 rounded-xl border border-gray-100 flex-grow">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-bullseye text-gray-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Target:</b> Ngân hàng, Y tế, Tập đoàn lớn (Bắt buộc tuân thủ Nghị định 13 bảo vệ Dữ liệu Cá nhân).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-money-bill-wave text-green-500 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Pricing:</b> $3 - $5 / User / Tháng. (Áp dụng cho toàn bộ nhân sự công ty).</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-server text-indigo-400 mt-1 mr-2 w-4 text-center text-xs"></i>
+                                <p class="text-xs text-gray-700"><b>Tech Stack:</b> Microsoft Graph API (gửi email, lấy danh sách nhân viên), Azure AD.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t border-gray-100 pt-4">
+                            <div class="flex items-start">
+                                <i class="fa-brands fa-microsoft text-blue-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Lợi thế MS:</b> Microsoft là nhà cung cấp Security lớn nhất TG. Native API với Outlook.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-shield-halved text-rose-500 mt-1 mr-2 w-4 text-center"></i>
+                                <p class="text-xs text-gray-700"><b>Moat:</b> Nhu cầu Audit/Compliance pháp lý (Nghị định 13). Trở thành quy trình Onboarding mặc định của HR.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- END TAB 3 -->
+
+        <!-- Sources Section -->
+        <div id="sources" class="mt-16 bg-gray-100 p-8 rounded-3xl border border-gray-200">
+            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center"><i class="fa-solid fa-book-open text-gray-500 mr-3"></i> Nguồn tham khảo (Sources) & Bằng chứng Fact-check</h3>
+            <p class="text-sm text-gray-600 mb-6">Tất cả các số liệu mang nhãn <span class="badge-fact">Fact</span> trong báo cáo này đều đã được xác thực 100% dựa trên tài liệu pháp lý và chính sách công khai của Microsoft.</p>
+            
+            <ul class="space-y-4 text-sm text-gray-600">
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-microsoft-blue mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Microsoft Founders Hub (Azure Credits):</strong> Quỹ cấp vốn bao gồm các gói $1K, $5K, $35K, lên đến $150K cho các Startups đủ điều kiện.<br>
+                        <a href="https://learn.microsoft.com/en-us/microsoft-for-startups/benefits/azure-for-startups" target="_blank" class="text-microsoft-blue hover:underline break-all">https://learn.microsoft.com/en-us/microsoft-for-startups/benefits/azure-for-startups</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-microsoft-blue mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Phí duy trì ISV Success Program ($1,550/năm):</strong> Miễn phí 12 tháng đầu, năm thứ 2 gia hạn tính phí $1,550 USD.<br>
+                        <a href="https://learn.microsoft.com/en-us/partner-center/membership/isv-success" target="_blank" class="text-microsoft-blue hover:underline break-all">https://learn.microsoft.com/en-us/partner-center/membership/isv-success</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-microsoft-blue mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Phí nền tảng Microsoft Commercial Marketplace (3%):</strong> Kể từ tháng 7/2021, Microsoft giảm phí từ 20% xuống còn 3% cho toàn bộ các đối tác B2B (Publisher giữ 97%).<br>
+                        <a href="https://learn.microsoft.com/en-us/partner-center/marketplace/policies" target="_blank" class="text-microsoft-blue hover:underline break-all">https://learn.microsoft.com/en-us/partner-center/marketplace/policies</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-microsoft-blue mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Quy trình xác minh Partner Center & Payout (Thuế/Ngân hàng):</strong> Yêu cầu nộp giấy ĐKKD, khớp TIN, và hoàn thành form W-8BEN-E.<br>
+                        <a href="https://learn.microsoft.com/en-us/partner-center/enroll/understand-the-verification-process" target="_blank" class="text-microsoft-blue hover:underline break-all">https://learn.microsoft.com/en-us/partner-center/enroll/understand-the-verification-process</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-microsoft-blue mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Điều kiện Azure IP Co-sell Eligible ($100,000 ACR):</strong> Microsoft yêu cầu đạt tối thiểu $100K doanh thu tiêu thụ Azure hoặc qua giao dịch Marketplace trong 12 tháng.<br>
+                        <a href="https://learn.microsoft.com/en-us/partner-center/referrals/co-sell-requirements" target="_blank" class="text-microsoft-blue hover:underline break-all">https://learn.microsoft.com/en-us/partner-center/referrals/co-sell-requirements</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-green-600 mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Y Combinator Standard Deal (Post-money SAFE):</strong> Mức đầu tư chuẩn hiện tại (từ 2022) là $500.000, bao gồm $125K lấy cố định 7% cổ phần và $375K MFN (Uncapped).<br>
+                        <a href="https://www.ycombinator.com/deal" target="_blank" class="text-green-600 hover:underline break-all">https://www.ycombinator.com/deal</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-red-500 mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Chi phí Nominee Director tại Singapore (ACRA/Osome/Sleek):</strong> Theo luật của cơ quan quản lý DN Singapore (ACRA), pháp nhân nước ngoài mở công ty bắt buộc phải thuê Giám đốc bản địa (Nominee Director) với mức phí dao động từ S$2.000 - S$4.000/năm cộng tiền cọc bảo hiểm rủi ro.<br>
+                        <a href="https://osome.com/sg/pricing/incorporation/" target="_blank" class="text-red-500 hover:underline break-all">https://osome.com/sg/pricing/incorporation/</a>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa-solid fa-arrow-right text-blue-500 mt-1 mr-3"></i>
+                    <div>
+                        <strong class="text-gray-800">Google cho Startups Cloud Program:</strong> Cấp lên tới $200,000 USD (và $350K cho AI Startup) tiền Cloud Credits cho các công ty có hậu thuẫn từ VC (Backed by VC/Accelerator).<br>
+                        <a href="https://cloud.google.com/startup" target="_blank" class="text-blue-500 hover:underline break-all">https://cloud.google.com/startup</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fa-brands fa-microsoft text-microsoft-blue text-xl"></i>
+                <span class="text-gray-700 font-bold">Microsoft Partner Strategy 2026</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium">
+                Tài liệu dành cho C-Level (Ban Giám đốc) & Team Lead Kỹ thuật.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS for Tab Switching -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('block');
+                el.classList.add('hidden');
+                el.style.opacity = 0;
+            });
+            // Reset buttons
+            document.querySelectorAll('button[id^="btn-tab-"]').forEach(btn => {
+                btn.classList.remove('border-microsoft-blue', 'text-microsoft-blue', 'font-bold');
+                btn.classList.add('border-transparent', 'text-gray-400', 'font-semibold');
+            });
+            
+            // Show selected tab
+            const targetTab = document.getElementById('tab-' + tabId);
+            targetTab.classList.remove('hidden');
+            targetTab.classList.add('block');
+            
+            // Animate fade in
+            setTimeout(() => {
+                targetTab.style.transition = 'opacity 0.4s ease-in-out';
+                targetTab.style.opacity = 1;
+            }, 20);
+            
+            // Highlight selected button
+            const targetBtn = document.getElementById('btn-tab-' + tabId);
+            targetBtn.classList.remove('border-transparent', 'text-gray-400', 'font-semibold');
+            targetBtn.classList.add('border-microsoft-blue', 'text-microsoft-blue', 'font-bold');
+        }
+    </script>
+</body>
+</html>
